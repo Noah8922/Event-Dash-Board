@@ -29,27 +29,24 @@ export function LiveEventDashboard() {
 
   //schduled
   const [scheduledEvent, setScheduledEvent] = useState<LiveEvent>(Object);
-  // const [scheduledProduct, setScheduledProduct] = useState<Product>(Object);
-  const [scheduledProduct, setScheduledProduct] = useState([])
+  const [scheduledProduct, setScheduledProduct] = useState([]);
   const [scheduledId, setScheduledId] = useState("");
   const [isScheduledEvent, setIsScheduledEvent] = useState<boolean>(false);
   const [isScheduledProduct, setIsScheduledProduct] = useState<boolean>(false);
 
   // Live
   const [liveEvent, setLiveEvent] = useState<LiveEvent>(Object);
-  const [liveProdcut, setLiveProduct] = useState([])
+  const [liveProdcut, setLiveProduct] = useState([]);
   const [liveId, setLiveId] = useState<string>("");
   const [isLiveEvent, setIsLiveEvent] = useState<boolean>(false);
   const [isLiveProduct, setIsLiveProduct] = useState<boolean>(false);
 
   // Finished
   const [finishedEvent, setFinishedEvent] = useState<LiveEvent>(Object);
-  const [finishedProduct, setFinishedProduct] = useState([])
+  const [finishedProduct, setFinishedProduct] = useState([]);
   const [finishedId, setFinishedId] = useState<string>("");
   const [isFinishedEvent, setIsFinishedEvent] = useState<boolean>(false);
   const [isFinishedProduct, setIsFinishedProduct] = useState<boolean>(false);
-
- 
 
   useEffect(() => {
     // EventList 가져오는 부분
@@ -64,25 +61,27 @@ export function LiveEventDashboard() {
         }
 
         if (eventList.length > 0) {
-          const scheduledArray = eventList.filter( //
+          const scheduledArray = eventList.filter(
+            //
             (item) => item.status === "scheduled"
           );
 
-          const liveArray = eventList.filter( //
-            (item) => item.status === "live");
+          const liveArray = eventList.filter(
+            //
+            (item) => item.status === "live"
+          );
 
-          const finishedArray = eventList.filter( //
+          const finishedArray = eventList.filter(
+            //
             (item) => item.status === "finished"
           );
 
           if (scheduledArray.length >= 1) {
             const length = scheduledArray.length - 1;
             const scheduledEvent = scheduledArray[length];
-            console.log(scheduledEvent);
             setScheduledEvent(scheduledEvent);
             setScheduledId(scheduledEvent.id);
             const id = scheduledEvent.id;
-            console.log(id);
             fetch(`${baseURL}/live-event/${id}/products`)
               .then((res) => res.json())
               .then((res) => {
@@ -93,10 +92,8 @@ export function LiveEventDashboard() {
           }
 
           if (liveArray.length >= 1) {
-            console.log(liveArray);
             const length = liveArray.length - 1;
             const liveEvent = liveArray[length];
-            console.log(liveEvent);
             setLiveEvent(liveEvent);
             setLiveId(liveEvent.id);
             const id = liveEvent.id;
@@ -110,10 +107,8 @@ export function LiveEventDashboard() {
           }
 
           if (finishedArray.length >= 1) {
-            console.log(finishedArray);
             const length = finishedArray.length - 1;
             const finishedEvent = finishedArray[length];
-            console.log(finishedEvent);
             setFinishedEvent(finishedEvent);
             setFinishedId(finishedEvent.id);
             const id = finishedEvent.id;
@@ -140,9 +135,9 @@ export function LiveEventDashboard() {
         },
     products: isScheduledProduct ? scheduledProduct : [],
     onDeleteAction: () => {
-      if(!isScheduledEvent) {
-        alert('삭제할 이벤트가 없습니다.')
-        return
+      if (!isScheduledEvent) {
+        alert("삭제할 이벤트가 없습니다.");
+        return;
       }
       const requestOptions = {
         method: "DELETE",
@@ -157,12 +152,12 @@ export function LiveEventDashboard() {
       alert("이벤트가 삭제되었습니다.");
       setIsScheduledEvent(false);
       setIsScheduledProduct(false);
-      history.push("/live-event")
+      history.push("/live-event");
     },
     onLiveEventAction: () => {
-      if(!isScheduledProduct) {
-        alert('방송할 이벤트가 없습니다.')
-        return
+      if (!isScheduledProduct) {
+        alert("방송할 이벤트가 없습니다.");
+        return;
       }
       fetch(`http://localhost:5000/live-event/${scheduledId}`, {
         method: "PATCH",
@@ -176,8 +171,8 @@ export function LiveEventDashboard() {
         }),
       }).then((response) => {
         if (response.ok) {
-          alert('해당 이벤트를 방송중으로 변경합니다.')
-          history.push("/live-event")
+          alert("해당 이벤트를 방송중으로 변경합니다.");
+          history.push("/live-event");
         }
       });
     },
@@ -194,9 +189,9 @@ export function LiveEventDashboard() {
         },
     products: isLiveProduct ? liveProdcut : [],
     onDeleteAction: () => {
-      if(!isLiveEvent) {
-        alert('삭제할 이벤트가 없습니다.')
-        return
+      if (!isLiveEvent) {
+        alert("삭제할 이벤트가 없습니다.");
+        return;
       }
       const requestOptions = {
         method: "DELETE",
@@ -210,15 +205,13 @@ export function LiveEventDashboard() {
       alert("이벤트가 삭제되었습니다.");
       setIsLiveEvent(false);
       setIsLiveProduct(false);
-      history.push("/live-event")
+      history.push("/live-event");
     },
     onFinishedEventAction: () => {
-      if(!isLiveProduct) {
-        alert('방송할 이벤트가 없습니다.')
-        return
+      if (!isLiveProduct) {
+        alert("방송할 이벤트가 없습니다.");
+        return;
       }
-      console.log(liveId)
-      console.log(liveEvent)
       fetch(`http://localhost:5000/live-event/${liveId}`, {
         method: "PATCH",
         headers: {
@@ -231,8 +224,8 @@ export function LiveEventDashboard() {
         }),
       }).then((response) => {
         if (response.ok) {
-          alert('해당 이벤트 종료합니다.')
-          history.push("/live-event")
+          alert("해당 이벤트 종료합니다.");
+          history.push("/live-event");
         }
       });
     },
@@ -249,9 +242,9 @@ export function LiveEventDashboard() {
         },
     products: isFinishedProduct ? finishedProduct : [],
     onDeleteAction: () => {
-      if(!isFinishedEvent) {
-        alert('삭제할 이벤트가 없습니다.')
-        return
+      if (!isFinishedEvent) {
+        alert("삭제할 이벤트가 없습니다.");
+        return;
       }
       const requestOptions = {
         method: "DELETE",
@@ -265,7 +258,7 @@ export function LiveEventDashboard() {
       alert("이벤트가 삭제되었습니다.");
       setIsFinishedEvent(false);
       setIsFinishedProduct(false);
-      history.push("/live-event")
+      history.push("/live-event");
     },
   };
 
