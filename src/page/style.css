@@ -1,0 +1,39 @@
+html,body{
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+#root{
+    width: 100%;
+    height: 100%;
+}
+.shopping-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+
+}
+.shopping-page .layout{
+    background-color: #000000;
+    flex-basis: 33.33%;
+    flex-shrink: 1;
+    width: 100%;
+    height: 100%;
+}
+.shopping-page .layout .broadcast{
+    width: 28vw;
+    height: 100%;
+    background-image: url('/src/page/live-shopping.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.broadcast .layout{
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
