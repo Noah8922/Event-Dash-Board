@@ -1,9 +1,9 @@
-import { FC, useEffect } from "react";
+import React from 'react';
+import { FC } from "react";
 import { ScheduledEventCardProps } from "../interface/event-card.props";
 import { Card, ResourceList, TextStyle, Thumbnail } from "@shopify/polaris";
-import { Product } from '../entities/product.entity';
 
-export const ScheduledEventCard: FC<ScheduledEventCardProps> = ({
+const ScheduledEventCard: FC<ScheduledEventCardProps> = ({
   event,
   products,
   onDeleteAction,
@@ -60,3 +60,5 @@ export const ScheduledEventCard: FC<ScheduledEventCardProps> = ({
     </Card>
   );
 };
+
+export default React.memo(ScheduledEventCard)

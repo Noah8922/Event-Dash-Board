@@ -1,8 +1,9 @@
+import React from 'react';
 import {FC} from "react";
 import {FinishedEventCardProps} from "../interface/event-card.props";
 import {Card, ResourceList, TextStyle, Thumbnail} from "@shopify/polaris";
 
-export const FinishedEventCard: FC<FinishedEventCardProps> = ({event, products, onDeleteAction}) => {
+const FinishedEventCard: FC<FinishedEventCardProps> = ({event, products, onDeleteAction}) => {
     return (
         <Card title={event.title}
               primaryFooterAction={{content: '이벤트 종료하기', onAction: async () => {await onDeleteAction(event.id)}, destructive: true}}
@@ -41,3 +42,5 @@ export const FinishedEventCard: FC<FinishedEventCardProps> = ({event, products, 
         </Card>
     )
 }
+
+export default React.memo(FinishedEventCard)

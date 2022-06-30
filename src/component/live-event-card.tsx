@@ -1,8 +1,9 @@
+import React from 'react';
 import { FC } from "react";
 import { LiveEventCardProps } from "../interface/event-card.props";
 import { Card, ResourceList, TextStyle, Thumbnail } from "@shopify/polaris";
 
-export const LiveEventCard: FC<LiveEventCardProps> = ({
+const LiveEventCard: FC<LiveEventCardProps> = ({
   event,
   products,
   onDeleteAction,
@@ -56,3 +57,5 @@ export const LiveEventCard: FC<LiveEventCardProps> = ({
     </Card>
   );
 };
+
+export default React.memo(LiveEventCard)
