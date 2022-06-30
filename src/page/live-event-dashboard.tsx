@@ -8,18 +8,17 @@ import {
   Thumbnail,
 } from "@shopify/polaris";
 import { useEffect, useState } from "react";
-import { ScheduledEventCard } from "../component/scheduled-event-card";
 import {
   FinishedEventCardProps,
   LiveEventCardProps,
   ScheduledEventCardProps,
 } from "../interface/event-card.props";
 import { LiveStatus } from "../entities/live-event.entity";
-import { LiveEventCard } from "../component/live-event-card";
-import { FinishedEventCard } from "../component/finished-event-card";
+import FinishedEventCard from '../component/finished-event-card';
+import LiveEventCard from '../component/live-event-card';
 import { useHistory } from "react-router-dom";
-import { Product } from "../entities/product.entity";
 import { LiveEvent } from "../entities/live-event.entity";
+import ScheduledEventCard from '../component/scheduled-event-card';
 
 export function LiveEventDashboard() {
   const history = useHistory();
@@ -147,8 +146,7 @@ export function LiveEventDashboard() {
         }),
       };
 
-      fetch(`http://localhost:5000/live-event/${scheduledId}`, requestOptions) //
-        .then((response) => console.log(response));
+      fetch(`http://localhost:5000/live-event/${scheduledId}`, requestOptions)
       alert("이벤트가 삭제되었습니다.");
       setIsScheduledEvent(false);
       setIsScheduledProduct(false);
@@ -224,7 +222,7 @@ export function LiveEventDashboard() {
         }),
       }).then((response) => {
         if (response.ok) {
-          alert("해당 이벤트 종료합니다.");
+          alert("해당 이벤트를 종료합니다.");
           history.push("/live-event");
         }
       });

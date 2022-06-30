@@ -62,8 +62,7 @@ export function LiveEventCreationPage() {
     } else if (selectedProducts === undefined) {
       alert("상품을 선택해주세요");
     } else {
-      fetch("http://localhost:5000/live-event", requestOptions) //
-      .then((response) => console.log(response));
+      fetch("http://localhost:5000/live-event", requestOptions)
       history.push("/live-event");
     }
     
